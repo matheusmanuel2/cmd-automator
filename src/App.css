@@ -1,0 +1,434 @@
+:root {
+  font-family: "Segoe UI", Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #e4e6eb;
+  background-color: #16181d;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  background: #1b1e24;
+  border-right: 1px solid #2a2e37;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 8px;
+  gap: 4px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #aeb2bd;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background: #232730;
+  color: #e4e6eb;
+}
+
+.nav-btn.active {
+  background: #2a3f66;
+  color: #ffffff;
+}
+
+.badge {
+  background: #3a7bd5;
+  color: white;
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 1px 7px;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.view {
+  height: 100%;
+  overflow: auto;
+}
+
+.view-run {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-hidden {
+  display: none !important;
+}
+
+/* Automations list */
+
+.automations-list-view {
+  padding: 24px 32px;
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.view-header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.muted {
+  color: #8b8f99;
+}
+
+.automation-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.automation-card {
+  background: #1b1e24;
+  border: 1px solid #2a2e37;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.automation-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.automation-card-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.step-count {
+  font-size: 12px;
+  color: #8b8f99;
+}
+
+.automation-steps-preview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.automation-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Buttons / inputs */
+
+.btn {
+  border-radius: 6px;
+  border: 1px solid #363b46;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #e4e6eb;
+  background-color: #232730;
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-color: #3a7bd5;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #3a7bd5;
+  border-color: #3a7bd5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #4c8ae0;
+}
+
+.btn-danger {
+  background: #3a1f22;
+  border-color: #6e2a30;
+  color: #f2a5ac;
+}
+
+.btn-danger:hover {
+  border-color: #d1495b;
+}
+
+.btn-small {
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+input {
+  border-radius: 6px;
+  border: 1px solid #363b46;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #e4e6eb;
+  background-color: #14161b;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3a7bd5;
+}
+
+/* Automation form */
+
+.automation-form {
+  padding: 24px 32px;
+  max-width: 900px;
+}
+
+.automation-form h2 {
+  margin-top: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+  max-width: 420px;
+}
+
+.field span {
+  font-size: 12px;
+  color: #8b8f99;
+}
+
+.step-list-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.step-list-header {
+  display: grid;
+  grid-template-columns: 24px 160px 1fr 1fr 28px;
+  gap: 8px;
+  font-size: 11px;
+  color: #8b8f99;
+  padding: 0 4px;
+}
+
+.step-row {
+  display: grid;
+  grid-template-columns: 24px 160px 1fr 1fr 28px;
+  gap: 8px;
+  align-items: center;
+}
+
+.step-number {
+  color: #8b8f99;
+  font-size: 12px;
+  text-align: center;
+}
+
+.step-cwd {
+  display: flex;
+  gap: 6px;
+}
+
+.step-cwd input {
+  flex: 1;
+  min-width: 0;
+}
+
+.btn-add-step {
+  align-self: flex-start;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Dialog */
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.dialog-box {
+  background: #1b1e24;
+  border: 1px solid #2a2e37;
+  border-radius: 10px;
+  padding: 20px;
+  width: 360px;
+}
+
+.dialog-box h3 {
+  margin-top: 0;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Run / terminal view */
+
+.run-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.terminal-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #1b1e24;
+  border-bottom: 1px solid #2a2e37;
+  padding: 6px 8px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.terminal-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #aeb2bd;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.terminal-tab:hover {
+  background: #232730;
+}
+
+.terminal-tab.active {
+  background: #2a3f66;
+  color: #ffffff;
+}
+
+.tab-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.tab-status-dot.running {
+  background: #3ecf6e;
+}
+
+.tab-status-dot.exited {
+  background: #d1495b;
+}
+
+.tab-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0 2px;
+}
+
+.tab-close:hover {
+  opacity: 1;
+}
+
+.tab-add {
+  background: transparent;
+  border: 1px dashed #363b46;
+  color: #aeb2bd;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.tab-add:hover {
+  border-color: #3a7bd5;
+  color: #ffffff;
+}
+
+.terminal-panes {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background: #111318;
+}
+
+.terminal-pane {
+  position: absolute;
+  inset: 0;
+  padding: 8px;
+}
+
+.terminal-empty {
+  padding: 24px;
+}
