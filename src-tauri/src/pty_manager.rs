@@ -196,6 +196,9 @@ impl PtyManager {
         let session = self.get_session(session_id)?;
         {
             let mut child = session.child.lock().unwrap();
+            if let Some(pid) = child.process_id() {
+                kill_process_tree(pid);
+            }
             let _ = child.kill();
         }
         self.sessions.lock().unwrap().remove(session_id);
@@ -249,3 +252,19 @@ impl PtyManager {
             .ok_or_else(|| AppError::NotFound(format!("session {session_id}")))
     }
 }
+
+/// Killing just the immediate child (cmd.exe) doesn't kill the processes it spawned
+/// (e.g. the node.exe behind `npm run dev`) — Windows' TerminateProcess only ever
+/// touches the one process, never its descendants. `taskkill /T` walks the whole tree.
+#[cfg(windows)]
+fn kill_process_tree(pid: u32) {
+    use std::os::windows::process::CommandExt;
+    const CREATE_NO_WINDOW: u32 = 0x0800_0000;
+    let _ = std::process::Command::new("taskkill")
+        .args(["/PID", &pid.to_string(), "/T", "/F"])
+        .creation_flags(CREATE_NO_WINDOW)
+        .output();
+}
+
+#[cfg(not(windows))]
+fn kill_process_tree(_pid: u32) {}
